@@ -1,3 +1,5 @@
+const mongoose = require("mongoose")
+require("dotenv").config()
 var createError = require("http-errors")
 var express = require("express")
 var expressLayouts = require("express-ejs-layouts")
@@ -8,6 +10,15 @@ var logger = require("morgan")
 var exploreRouter = require("./routes/explore")
 
 var app = express()
+
+const MONGODB_URI = process.env.MONGODB_URI
+mongoose.set("strictQuery", false)
+//Database setup
+
+main().catch((err) => console.log(err))
+async function main() {
+  await mongoose.connect(MONGODB_URI)
+}
 
 // view engine setup
 app.use(expressLayouts)
