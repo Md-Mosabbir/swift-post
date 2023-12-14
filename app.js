@@ -1,5 +1,5 @@
-const mongoose = require("mongoose")
 require("dotenv").config()
+const mongoose = require("mongoose")
 var createError = require("http-errors")
 var express = require("express")
 var expressLayouts = require("express-ejs-layouts")
@@ -7,7 +7,10 @@ var path = require("path")
 var cookieParser = require("cookie-parser")
 var logger = require("morgan")
 
-var exploreRouter = require("./routes/explore")
+var index = require("./routes/index")
+var profile = require("./routes/profile")
+const register = require("./routes/register")
+const login = require("./routes/login")
 
 var app = express()
 
@@ -31,7 +34,10 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use("/explore", exploreRouter)
+//Routes
+app.use("/", index)
+app.use("/register", register)
+app.use("/login", login)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
