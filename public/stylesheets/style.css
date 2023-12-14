@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input-auth {
+  @apply flex flex-col w-full gap-2;
+}
+
+.auth {
+  @apply rounded-2xl w-full h-12 px-4 bg-blue-500 bg-opacity-5 border border-blue-800;
+}
+
+.label-auth {
+  @apply text-xl font-inter;
+}

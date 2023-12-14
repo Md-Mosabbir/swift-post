@@ -1,0 +1,34 @@
+<main class="flex justify-center items-center h-screen w-full p-8">
+  <div class="border-4 w-[472px] rounded-3xl px-7 py-9">
+    <h1 class="text-center font-poppins font-bold text-4xl pb-8">Swift-Post</h1>
+
+    <form action="" method="post" class="flex flex-col items-start gap-8">
+      <div class="input-auth">
+        <label for="username" class="label-auth"> Username:</label>
+        <input
+          class="auth"
+          type="text"
+          name="username"
+          id="username"
+          autocomplete="username"
+        />
+      </div>
+
+      <div class="input-auth">
+        <label for="password" class="label-auth">Password:</label>
+        <input class="auth" type="password" name="password" id="password" />
+      </div>
+
+      <button
+        type="submit"
+        class="mx-auto bg-blue-600 text-white rounded-xl px-11 py-3 text-3xl"
+      >
+        Login
+      </button>
+      <p class="mx-auto">
+        Don't have an account? Please
+        <a href="/register" class="text-green-700 underline text-lg">Sign-up</a>
+      </p>
+    </form>
+  </div>
+</main>
