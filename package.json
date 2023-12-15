@@ -7,6 +7,7 @@
     "tailwind:css": "npx tailwindcss -i ./public/stylesheets/style.css -o ./public/stylesheets/tailwind.css --watch"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.3.1",
@@ -16,7 +17,8 @@
     "express-ejs-layouts": "^2.5.1",
     "http-errors": "~1.6.3",
     "mongoose": "^8.0.2",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "passport": "^0.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",

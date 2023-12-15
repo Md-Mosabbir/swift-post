@@ -2,24 +2,28 @@
   <div class="border-4 w-[472px] rounded-3xl px-7 py-9">
     <h1 class="text-center font-poppins font-bold text-4xl pb-8">Swift-Post</h1>
 
-    <form action="" method="post" class="flex flex-col items-start gap-4">
+    <form
+      action="/register"
+      method="post"
+      class="flex flex-col items-start gap-4"
+    >
       <div class="input-auth">
-        <label for="first-name" class="label-auth">First name:</label>
+        <label for="first_name" class="label-auth">First name:</label>
         <input
           class="auth"
           type="text"
-          name="first-name"
-          id="first-name"
+          name="first_name"
+          id="first_name"
           autocomplete="name"
         />
       </div>
       <div class="input-auth">
-        <label for="last-name" class="label-auth">Last name:</label>
+        <label for="last_name" class="label-auth">Last name:</label>
         <input
           class="auth"
           type="text"
-          name="last-name"
-          id="last-name"
+          name="last_name"
+          id="last_name"
           autocomplete="family-name"
         />
       </div>
@@ -48,14 +52,14 @@
         <input class="auth" type="password" name="password" id="password" />
       </div>
       <div class="input-auth">
-        <label for="password-confirm" class="label-auth"
+        <label for="passwordconfirm" class="label-auth"
           >Confirm Password:</label
         >
         <input
           class="auth"
           type="password"
-          name="password-confirm"
-          id="password-confirm"
+          name="passwordconfirm"
+          id="passwordconfirm"
         />
       </div>
       <button
