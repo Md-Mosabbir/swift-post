@@ -1,8 +1,10 @@
 var express = require("express")
 var router = express.Router()
 const authentication_controller = require("../controllers/authenticationController")
+
+const { forwardAuthenticated } = require("../config/authConfig")
 /* Explore page containing everyting */
-router.get("/", function (req, res, next) {
+router.get("/", forwardAuthenticated, function (req, res, next) {
   res.render("register")
 })
 

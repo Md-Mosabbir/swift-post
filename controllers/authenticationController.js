@@ -1,5 +1,5 @@
 const User = require("../models/user")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const passport = require("passport")
 // POST-ing the form of registration
 
@@ -91,8 +91,8 @@ exports.login = (req, res, next) => {
   passport.authenticate("local", {
     //! Subject to change
     successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
+    failureRedirect: "/register",
+    // failureFlash: true,
   })(req, res, next)
 }
 
