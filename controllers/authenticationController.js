@@ -19,6 +19,7 @@ exports.submit_register = (req, res) => {
     !passwordconfirm
   ) {
     errors.push({ msg: "Please enter all fields" })
+    console.log(errors)
   }
   if (password != passwordconfirm) {
     errors.push({ msg: "Passwords do not match" })
@@ -28,34 +29,28 @@ exports.submit_register = (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render(
-      "register",
-      // {
-      //   errors,
-      //   first_name,
-      //   last_name,
-      //   username,
-      //   email,
-      //   password,
-      //   passwordconfirm,
-      // }
-    )
+    res.render("register", {
+      errors,
+      first_name,
+      last_name,
+      username,
+      email,
+      password,
+      passwordconfirm,
+    })
   } else {
     User.findOne({ email: email }).then((user) => {
       if (user) {
         errors.push({ msg: "Email already exists" })
-        res.render(
-          "register",
-          // {
-          //   errors,
-          //   first_name,
-          //   last_name,
-          //   username,
-          //   email,
-          //   password,
-          //   passwordconfirm,
-          // }
-        )
+        res.render("register", {
+          errors,
+          first_name,
+          last_name,
+          username,
+          email,
+          password,
+          passwordconfirm,
+        })
       } else {
         const newUser = new User({
           first_name,
@@ -73,10 +68,10 @@ exports.submit_register = (req, res) => {
             newUser
               .save()
               .then((user) => {
-                // req.flash(
-                //     'success_msg',
-                //     'You are now registered and can log in'
-                //   );
+                req.flash(
+                  "success_msg",
+                  "You are now registered and can log in",
+                )
                 res.redirect("/login")
               })
               .catch((err) => console.log(err))
@@ -90,14 +85,14 @@ exports.submit_register = (req, res) => {
 exports.login = (req, res, next) => {
   passport.authenticate("local", {
     //! Subject to change
-    successRedirect: "/",
-    failureRedirect: "/register",
-    // failureFlash: true,
+    successRedirect: "/explore",
+    failureRedirect: "/login",
+    failureFlash: true,
   })(req, res, next)
 }
 
 exports.logout = (req, res) => {
   req.logout()
-  //   req.flash("success_msg", "You are logged out")
+  req.flash("success_msg", "You are logged out")
   res.redirect("/login")
 }

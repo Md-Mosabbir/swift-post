@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./views/**/*.ejs", // Adjust the path based on your project structure
     "./public/**/*.js", // Include JavaScript files if needed

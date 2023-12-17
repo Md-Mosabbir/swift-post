@@ -2,6 +2,8 @@
   <div class="border-4 w-[472px] rounded-3xl px-7 py-9">
     <h1 class="text-center font-poppins font-bold text-4xl pb-8">Swift-Post</h1>
 
+    <% include ./partials/messages %>
+
     <form
       action="/register"
       method="post"
@@ -15,6 +17,7 @@
           name="first_name"
           id="first_name"
           autocomplete="name"
+          value="<%= typeof first_name != 'undefined' ? first_name : '' %>"
         />
       </div>
       <div class="input-auth">
@@ -25,6 +28,7 @@
           name="last_name"
           id="last_name"
           autocomplete="family-name"
+          value="<%= typeof last_name != 'undefined' ? last_name : '' %>"
         />
       </div>
       <div class="input-auth">
@@ -35,6 +39,7 @@
           name="username"
           id="username"
           autocomplete="username"
+          value="<%= typeof username != 'undefined' ? username : '' %>"
         />
       </div>
       <div class="input-auth">
@@ -45,11 +50,18 @@
           name="email"
           id="email"
           autocomplete="email"
+          value="<%= typeof email != 'undefined' ? email : '' %>"
         />
       </div>
       <div class="input-auth">
         <label for="password" class="label-auth">Password:</label>
-        <input class="auth" type="password" name="password" id="password" />
+        <input
+          class="auth"
+          type="password"
+          name="password"
+          id="password"
+          value="<%= typeof password != 'undefined' ? password : '' %>"
+        />
       </div>
       <div class="input-auth">
         <label for="passwordconfirm" class="label-auth"
@@ -60,6 +72,7 @@
           type="password"
           name="passwordconfirm"
           id="passwordconfirm"
+          value="<%= typeof passwordconfirm != 'undefined' ? passwordconfirm : '' %>"
         />
       </div>
       <button
