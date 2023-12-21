@@ -1,29 +1,70 @@
 <main class="h-screen w-full p-8">
   <div class="w-full">
     <div class="flex flex-col">
+      <!-- profile.ejs -->
       <div class="flex justify-start items-center gap-14 w-full">
         <img
-          src="https://i.pinimg.com/236x/9e/99/4d/9e994d3e98d7dae5fe766a7e5d7c57df.jpg"
+          src="https://i.pinimg.com/236x/5e/75/4d/5e754dcdb067c149bc7567627dbb5abe.jpg"
           alt="Profile Image"
           class="rounded-full object-center"
         />
-        <div class="my-10 flex flex-col items-start w-full ">
-          <h1 class="text-3xl font-bold ">Md Mosabbir Hossain Khan</h1>
-            <p class="text-gray-600">@Mosabbir</p>
-            <div class="flex justify-center mt-7">
-              <span class="mr-4">Followers: 1.4k</span>
-              <span class="mr-4">Following: 233</span>
-              <span>Badges: 2</span>
-            </div>
-            <div class="flex justify-center mt-10 w-72">
-              <button class="bg-blue-500 text-white px-4 py-2 rounded-full mr-2 w-full">Edit</button>
-              <button class="bg-red-500 text-white px-4 py-2 rounded-full w-full">Delete</button>
-            </div>
+        <div class="my-10 flex flex-col items-start w-full">
+          <h1 class="text-3xl font-bold"><%= user.first_name %></h1>
+          <p class="text-gray-600"><%= user.username %></p>
+          <div class="flex justify-center mt-7">
+            <span class="mr-4">Followers: 2.5k</span>
+            <span class="mr-4">Following: 20</span>
+            <span>Badges: 3</span>
+          </div>
+          <div class="flex justify-center mt-10 w-72">
+            <button
+              class="bg-blue-500 text-white px-4 py-2 rounded-full mr-2 w-full"
+            >
+              Edit
+            </button>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-full w-full">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h2 class="text-xl text-center font-bold mt-4 border-b-4">Posts</h2>
+      <!-- Display storylines below -->
+
+      <div class="mb-10">
+        <h2 class="text-xl text-center font-bold mt-4 border-b-4 mb-9">
+          Posts
+        </h2>
+        <div
+          class="w-full flex justify-start gap-4 flex-wrap relative mx-auto"
+        >
+          <% if (user.storylines.length > 0) { %> 
+            <% user.storylines.forEach((storyline) => { %>
+          <div>
+            <h3 class="font-bold"> <%= storyline.title %> </h3>
+            <div
+              class="min-w-[550px] h-64 rounded-2xl bg-red-600 flex justify-start items-center relative p-8"
+            >
+              <div
+                class="w-96 h-52 rounded-md bg-slate-300 absolute z-50"
+              >
+              <p><%= storyline.timeLogs[0].post %></p>
+            </div>
+              <div
+                class="w-96 h-52 rounded-md bg-slate-700 absolute left-14 z-40"
+              ></div>
+              <div
+                class="w-96 h-52 rounded-md bg-slate-900 absolute left-20 z-30"
+              ></div>
+            </div>
+          </div>
+
+          <% }) %>
+
+          <% } else { %>
+          <p>No storylines available.</p>
+          <% } %> 
+        </div>
       </div>
     </div>
   </div>

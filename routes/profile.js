@@ -1,11 +1,12 @@
-var express = require("express")
-var router = express.Router()
-
+const express = require("express")
+const router = express.Router()
+const profile_controller = require("../controllers/profileController")
 const { ensureAuthenticated } = require("../config/authConfig")
 
-/* Explore page containing everyting */
-router.get("/", ensureAuthenticated, function (req, res, next) {
-  res.render("profile")
-})
+router.get(
+  "/",
+  ensureAuthenticated,
+  profile_controller.get_storylines_and_timelogs,
+)
 
 module.exports = router
