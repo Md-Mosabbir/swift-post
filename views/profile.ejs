@@ -54,7 +54,12 @@
                 <div
                   class="w-96 h-52 rounded-md bg-slate-300 absolute z-30"
                 >
-                <p><%= storyline.timeLogs[0].post %></p>
+                <% if (storyline.timeLogs.length > 0) { %>
+                  <p><%= storyline.timeLogs[0].post %></p>
+                <% } else { %>
+                  <p>No timelog available</p>
+                <% } %>
+                
               </div>
                 <div
                   class="w-96 h-52 rounded-md bg-slate-700 absolute left-14 z-20"

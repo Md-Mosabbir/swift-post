@@ -3,6 +3,8 @@ const User = require("../models/users")
 const Storyline = require("../models/storylines")
 const Timelog = require("../models/timeLogs")
 
+// CRUD storylines
+
 exports.get_storylines = asyncHandler(async (req, res) => {
   const userId = req.user.id
   const id = req.params.storylineId
@@ -30,23 +32,58 @@ exports.update_storyline = asyncHandler(async (req, res) => {
   const storyId = req.params.storylineId
   const title = req.body.editStorylineName
 
-  console.log("Story ID:", storyId)
-  console.log("New Title:", title)
-
   const updatedStoryline = await Storyline.findByIdAndUpdate(
     storyId,
     { title: title },
     { new: true },
   )
 
-  console.log("Updated Storyline:", updatedStoryline)
-
-  res.redirect("/")
+  res.redirect("/profile")
 })
 
 exports.delete_storyline = asyncHandler(async (req, res) => {
   const storyId = req.params.storylineId
+
+  // Delete timeLogs associated with the storyline
+  await Timelog.deleteMany({ storylines: storyId })
+
+  // Delete the storyline itself
   await Storyline.findByIdAndDelete(storyId)
 
-  res.redirect("/")
+  res.redirect("/profile")
+})
+
+// CRUD timelogs
+
+exports.get_timeLogs = asyncHandler(async (req, res) => {
+  const timeLogId = req.params.timeLogId
+
+  // Find the timeLog
+  const timeLog = await Timelog.findById(timeLogId)
+
+  // Render your response or send it as JSON
+  res.render("showTimeLog", { timeLog, id: timeLogId })
+})
+
+exports.update_timeLog = asyncHandler(async (req, res) => {
+  const timeLogId = req.params.timeLogId
+  const timeLogEdit = req.body.editTimeLog
+
+  // Find the timeLog
+  const updatedTimelog = await Timelog.findByIdAndUpdate(
+    timeLogId,
+    { post: timeLogEdit },
+    { new: true },
+  )
+
+  res.redirect("/profile")
+})
+
+exports.delete_timeLog = asyncHandler(async (req, res) => {
+  const timeLogId = req.params.timeLogId
+
+  // Delete the storyline itself
+  await Timelog.findByIdAndDelete(timeLogId)
+
+  res.redirect("/profile")
 })
