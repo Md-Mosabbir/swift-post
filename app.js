@@ -16,8 +16,12 @@ var profile = require("./routes/profile")
 const register = require("./routes/register")
 const login = require("./routes/login")
 const explore = require("./routes/explore")
+const create = require("./routes/createJourneys")
+const storyline = require("./routes/show")
 
 var app = express()
+
+const methodOverride = require("method-override")
 
 //Passport COnfig
 require("./config/passport")(passport)
@@ -41,6 +45,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
+app.use(methodOverride("_method"))
 
 // Express session
 app.use(
@@ -72,6 +77,8 @@ app.use("/register", register)
 app.use("/login", login)
 app.use("/explore", explore)
 app.use("/profile", profile)
+app.use("/create", create)
+app.use("/storyline", storyline)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

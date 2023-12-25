@@ -4,7 +4,7 @@ const profile_controller = require("../controllers/profileController")
 const { ensureAuthenticated } = require("../config/authConfig")
 
 router.get(
-  "/",
+  "/:username",
   ensureAuthenticated,
   profile_controller.get_storylines_and_timelogs,
 )

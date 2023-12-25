@@ -2,7 +2,8 @@
 const mongoose = require("mongoose")
 
 const timeLogSchema = new mongoose.Schema({
-  name: String,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+  storylines: { type: mongoose.Schema.Types.ObjectId, ref: "storylines" },
   post: String,
   createdDate: { type: Date, default: Date.now },
 })

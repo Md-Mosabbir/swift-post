@@ -1,0 +1,117 @@
+<!-- views/storyline.ejs -->
+
+<main class="h-screen w-full p-8">
+    <div class="w-full">
+      <div class="flex flex-col gap-8">
+        <!-- Storyline Title with Edit/Delete Buttons -->
+        <div class="flex justify-start items-center gap-4 w-full">
+          <h1 class="text-3xl font-bold mb-4"><%= storyline.title %></h1>
+          <div class="flex items-center space-x-4">
+             <button class="w-8 h-8 aspect-square bg-black rounded-full edit">
+                <i class="fa-regular fa-pen-to-square" style="color: #ffffff"></i>
+              </button>
+            <form action="/storyline/<%= id %>/delete?_method=DELETE" method="post">
+                <button class="w-8 h-8 aspect-square bg-red-600 rounded-full" type="submit">
+                <i class="fa-solid fa-trash" style="color: #ffffff"></i>
+                </button>
+            </form>
+          </div>
+        </div>
+  
+        <!-- Time Logs -->
+        <section class=" flex flex-col gap-4 h-screen">
+            <% storyline.timeLogs.forEach((timeLog) => { %>
+              <article class=" w-1/2 h-60 px-8 py-6 rounded-md inset-0 bg-white shadow-inner flex flex-col mx-auto justify-between border">
+                <p class="text-gray-700 text-lg"><%= timeLog.post %></p>
+                <div class="flex items-center mt-2">
+                  <span class="text-gray-500 text-sm">
+                    <%= new Date(timeLog.createdDate).toLocaleString() %>
+                  </span>
+                </div>
+              </article>
+            <% }) %>
+        </section>
+          
+      </div>
+    </div>
+
+    <div id="storyline-change-modal" class="relative z-[100]  hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!--
+          Background backdrop, show/hide based on modal state.
+      
+          Entering: "ease-out duration-300"
+            From: "opacity-0"
+            To: "opacity-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100"
+            To: "opacity-0"
+        -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+      
+        <div class="fixed inset-0 z-[10000] w-screen overflow-y-auto">
+          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <!--
+              Modal panel, show/hide based on modal state.
+      
+              Entering: "ease-out duration-300"
+                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                To: "opacity-100 translate-y-0 sm:scale-100"
+              Leaving: "ease-in duration-200"
+                From: "opacity-100 translate-y-0 sm:scale-100"
+                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            -->
+            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                <div class=" flex flex-col gap-4 w-full">
+                  <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold leading-6 text-gray-900">Edit Storyline</h2>
+                  <button id="close-story-change">
+                    <i class="fa-solid fa-xmark fa-2xl" style="color: #1c8cc4;"></i>
+                  </button>
+                  </div>
+      
+                  <div class="w-full">
+                    <form action="/storyline/<%= id %>/edit" method="post" >
+                      <div>
+                        <label    for="editStorylineName"  class="text-lg">Title:</label>
+                        <input type="text" required name="editStorylineName" id="editStorylineName" class="auth">
+                      </div>
+                      <div class="flex justify-center">
+                        <button class="px-8 py-3 mx-auto mt-6 bg-blue-200 text-2xl rounded-xl" type="submit">Change</button>
+                      </div>
+                      
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+  </main>
+
+  
+  <script>
+    const closeBtn = document.getElementById("close-story-change")
+  
+    const modal = document.getElementById("storyline-change-modal")
+  
+    closeBtn.addEventListener("click", () => {
+      modal.classList.add('hidden')   
+    })
+  
+    const edit = document.querySelectorAll(".edit")
+  
+    edit.forEach((ed) => {
+      ed.addEventListener('click', () => {
+        
+      modal.classList.remove("hidden")
+      })
+    })
+  
+  
+  
+  
+  </script>
+  

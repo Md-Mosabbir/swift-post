@@ -1,0 +1,123 @@
+<main class="flex justify-center items-center w-full h-screen">
+  <div
+    class="w-[550px]  p-5 flex flex-col justify-start items-center gap-5 rounded-2xl shadow-lg border-2"
+  >
+    <h1 class="font-extrabold text-4xl font-poppins">Create</h1>
+    <nav
+      class="flex justify-between px-6 items-center w-1/2 py-2 rounded-full mb-2 bg-blue-400"
+    >
+      <button id="storiesBtn" class="active text-lg"><h2>Stories</h2></button>
+      <button>
+        <h2 id="timeLogBtn" class="text-white text-lg">Time-log</h2>
+      </button>
+    </nav>
+
+    <!-- Stories form -->
+
+    <div
+      id="storiesContent"
+      class="border-t-2 w-full h-full flex justify-center"
+    >
+    
+      <form
+        action="/create/create-story"
+        method="post"
+        class="flex flex-col items-center gap-4 w-[90%] mt-5"
+      >
+      <% include ./partials/messages %>
+        <div class="create-input items-center">
+          <label for="titleStory" class="text-xl font-poppins">Title:</label>
+          <input
+            type="text"
+            name="titleStory"
+            id="title-story"
+            class="w-[78%] py-2 rounded-2xl border-2 p-3"
+            required  
+          />
+        </div>
+        <div class="create-input items-start">
+          <label for="timelogStory" class="text-xl font-poppins pt-3"
+            >Timelog:</label
+          >
+          <textarea
+            required  
+            name="timelogStory"
+            id="timelog-story"
+            class="resize-none w-full h-80 py-2 rounded-2xl border-2 p-3"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="px-8 py-3 mt-6 bg-blue-200 text-2xl rounded-xl"
+        >
+          Create
+        </button>
+      </form>
+    </div>
+
+    <!-- Timelog form -->
+
+    <div
+      id="timeLogContent"
+      class="border-t-2 w-full h-full hidden justify-center"
+    >
+      <form
+        action="/create/create-timelog"
+        method="post"
+        class="flex flex-col items-center gap-4 w-[90%] mt-5"
+      >
+      <% include ./partials/messages %>
+        <div class="create-input items-center">
+          <label for="storySelect" class="text-xl font-poppins">Story:</label>
+    
+          <select name="storySelect" id="story-select" class="w-[78%] py-2 rounded-2xl border-2 px-3">
+            <% user.storylines.forEach((story) => { %>
+              <option value="<%= story.title %>"> <%= story.title %> </option>
+
+            <% }) %>
+          </select>
+        </div>
+        <div class="create-input items-start">
+          <label for="timelogPrev" class="text-xl font-poppins pt-3"
+            >Timelog:</label
+          >
+          <textarea
+            name="timelogPrev"
+            id="timelogPrev"
+            class="resize-none w-full h-80 py-2 rounded-2xl border-2 p-3"
+            required
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="px-8 py-3 mt-6 bg-blue-200 text-2xl rounded-xl"
+        >
+          Create
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+  const storiesBtn = document.getElementById("storiesBtn")
+  const timeLogBtn = document.getElementById("timeLogBtn")
+  const storiesContent = document.getElementById("storiesContent")
+  const timeLogContent = document.getElementById("timeLogContent")
+
+  storiesBtn.addEventListener("click", () => {
+    storiesBtn.classList.add("active")
+    timeLogBtn.classList.remove("active")
+    storiesContent.style.display = "flex"
+    timeLogContent.style.display = "none"
+  })
+
+  timeLogBtn.addEventListener("click", () => {
+    timeLogBtn.classList.add("active")
+    storiesBtn.classList.remove("active")
+    timeLogContent.style.display = "flex"
+    storiesContent.style.display = "none"
+  })
+</script>

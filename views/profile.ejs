@@ -1,7 +1,9 @@
+
+
 <main class="h-screen w-full p-8">
   <div class="w-full">
     <div class="flex flex-col">
-      <!-- profile.ejs -->
+       
       <div class="flex justify-start items-center gap-14 w-full">
         <img
           src="https://i.pinimg.com/236x/5e/75/4d/5e754dcdb067c149bc7567627dbb5abe.jpg"
@@ -19,6 +21,7 @@
           <div class="flex justify-center mt-10 w-72">
             <button
               class="bg-blue-500 text-white px-4 py-2 rounded-full mr-2 w-full"
+              
             >
               Edit
             </button>
@@ -40,24 +43,28 @@
         >
           <% if (user.storylines.length > 0) { %> 
             <% user.storylines.forEach((storyline) => { %>
-          <div>
-            <h3 class="font-bold"> <%= storyline.title %> </h3>
-            <div
-              class="min-w-[550px] h-64 rounded-2xl bg-red-600 flex justify-start items-center relative p-8"
-            >
+          <a href="/storyline/<%= storyline._id %>">
+            <div>
+            
+              <h3 class="font-bold"> <%= storyline.title %> </h3>
+              
               <div
-                class="w-96 h-52 rounded-md bg-slate-300 absolute z-50"
+                class="min-w-[550px] h-64 rounded-2xl inset-0 bg-white shadow-inner border-2 flex justify-start items-center relative p-8"
               >
-              <p><%= storyline.timeLogs[0].post %></p>
+                <div
+                  class="w-96 h-52 rounded-md bg-slate-300 absolute z-30"
+                >
+                <p><%= storyline.timeLogs[0].post %></p>
+              </div>
+                <div
+                  class="w-96 h-52 rounded-md bg-slate-700 absolute left-14 z-20"
+                ></div>
+                <div
+                  class="w-96 h-52 rounded-md bg-slate-900 absolute left-20 z-10"
+                ></div>
+              </div>
             </div>
-              <div
-                class="w-96 h-52 rounded-md bg-slate-700 absolute left-14 z-40"
-              ></div>
-              <div
-                class="w-96 h-52 rounded-md bg-slate-900 absolute left-20 z-30"
-              ></div>
-            </div>
-          </div>
+          </a>
 
           <% }) %>
 
@@ -68,4 +75,8 @@
       </div>
     </div>
   </div>
+  
+  
 </main>
+
+
