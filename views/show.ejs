@@ -1,5 +1,4 @@
-<!-- views/storyline.ejs -->
-
+<% include ./partials/navigationBar %>
 <main class="h-screen w-full p-8">
     <div class="w-full">
       <div class="flex flex-col gap-8">
@@ -22,7 +21,7 @@
         <section class=" flex flex-col gap-4 h-screen">
             <% storyline.timeLogs.forEach((timeLog) => { %>
               <a href="/storyline/time-log/<%= timeLog._id %>">
-                <article class=" w-1/2  px-8 py-12 rounded-md inset-0 bg-white shadow-inner flex flex-col gap-8 mx-auto justify-between border">
+                <article class=" w-1/2  px-8 py-12 rounded-2xl inset-0 bg-white shadow-inner flex flex-col gap-8 mx-auto justify-between border">
                   <p class="text-gray-700 text-lg"><%= timeLog.post %></p>
                   <div class="flex items-center mt-2">
                     <span class="text-gray-500 text-sm">
@@ -91,6 +90,8 @@
           </div>
         </div>
     </div>
+
+    <% include ./partials/createButton %>
   </main>
 
   
