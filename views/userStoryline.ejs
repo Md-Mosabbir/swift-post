@@ -1,0 +1,33 @@
+<% include ./partials/navigationBar %>
+<main class="h-screen w-full p-8">
+    <div class="w-full">
+      <div class="flex flex-col gap-8">
+        <!-- Storyline Title with Edit/Delete Buttons -->
+        <div class="flex justify-start items-center gap-4 w-full">
+          <h1 class="text-3xl font-bold mb-4"><%= storyline.title %></h1>
+          
+        </div>
+  
+        <!-- Time Logs -->
+        <section class=" flex flex-col gap-4 h-screen">
+            <% storyline.timeLogs.forEach((timeLog) => { %>
+              
+                <article class=" w-1/2  px-8 py-12 rounded-2xl inset-0 bg-white shadow-inner flex flex-col gap-8 mx-auto justify-between border">
+                  <p class="text-gray-700 text-lg"><%= timeLog.post %></p>
+                  <div class="flex items-center mt-2">
+                    <span class="text-gray-500 text-sm">
+                      <%= new Date(timeLog.createdDate).toLocaleString() %>
+                    </span>
+                  </div>
+                </article>
+              
+            <% }) %>
+        </section>
+          
+      </div>
+    </div>
+
+    
+
+    <% include ./partials/createButton %>
+  </main>

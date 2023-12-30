@@ -3,6 +3,8 @@ const router = express.Router()
 const profile_controller = require("../controllers/profileController")
 const { ensureAuthenticated } = require("../config/authConfig")
 
+router.get("/logout", profile_controller.logout)
+
 router.get("/", ensureAuthenticated, profile_controller.get_profile)
 
 router.get("/edit", ensureAuthenticated, profile_controller.get_edit_profile)

@@ -119,3 +119,19 @@ exports.delete_profile = asyncHandler(async (req, res) => {
     res.status(500).send("Internal Server Error")
   }
 })
+
+exports.logout = (req, res) => {
+  // Using the callback function provided by req#logout
+  req.logout((err) => {
+    if (err) {
+      console.error(err)
+      // Handle the error, perhaps by sending an error response
+      res.status(500).send("Internal Server Error")
+      return
+    }
+
+    // Successful logout
+    req.flash("success_msg", "You are logged out")
+    res.redirect("/login")
+  })
+}

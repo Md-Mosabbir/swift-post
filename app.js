@@ -18,6 +18,7 @@ const login = require("./routes/login")
 const explore = require("./routes/explore")
 const create = require("./routes/createJourneys")
 const storyline = require("./routes/show")
+var users = require("./routes/users")
 
 var app = express()
 
@@ -79,6 +80,7 @@ app.use("/explore", explore)
 app.use("/profile", profile)
 app.use("/create", create)
 app.use("/storyline", storyline)
+app.use("/users", users)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -19,29 +19,7 @@
             <span class="mr-4">Following: 20</span>
             <span>Badges: 3</span>
           </div> -->
-          <div class="flex gap-2 justify-center mt-10 w-72">
-            <a href="/profile/edit" class="w-full">
-              <button
-              class="bg-blue-500 text-white px-4 py-2 rounded-full mr-2 w-full"
-              
-            >
-              Edit
-            </button>
-            </a>
-            <a href="/profile/logout">
-              <button class=" bg-stone-600 text-white px-4 py-2 rounded-full w-full">
-                Logout
-              </button>
-            </a>
-            <a href="/profile/delete" class="w-full">
-              <button class="bg-red-500 text-white px-4 py-2 rounded-full w-full">
-                Delete
-              </button>
-            </a>
-            
-
-            
-          </div>
+          
         </div>
       </div>
 
@@ -56,7 +34,7 @@
         >
           <% if (user.storylines.length > 0) { %> 
             <% user.storylines.forEach((storyline) => { %>
-          <a href="/storyline/<%= storyline._id %>">
+          <a href="/users/<%= storyline.user._id %>/<%= storyline._id %>">
             <div>
             
               <h3 class="font-bold"> <%= storyline.title %> </h3>
@@ -96,5 +74,3 @@
 
   <% include ./partials/createButton %>
 </main>
-
-
