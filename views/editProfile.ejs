@@ -1,0 +1,69 @@
+<main class="flex justify-center items-center h-screen w-full p-8">
+  <div class="border-4 w-[472px] rounded-3xl px-7 py-9">
+    <h1 class="text-center font-poppins font-bold text-4xl pb-8">Swift-Post</h1>
+
+    <% include ./partials/messages %>
+
+    <form
+      action="/profile/edit"
+      method="post"
+      class="flex flex-col items-start gap-4"
+    >
+      <div class="input-auth">
+        <label for="first_name" class="label-auth">First name:</label>
+        <input
+          required
+          class="auth"
+          type="text"
+          name="first_name_edit"
+          id="first_name_edit"
+          autocomplete="name"
+          value="<%= typeof first_name_edit != 'undefined' ? first_name_edit : '' %>"
+        />
+      </div>
+      <div class="input-auth">
+        <label for="last_name_edit" class="label-auth">Last name:</label>
+        <input
+          required
+          class="auth"
+          type="text"
+          name="last_name_edit"
+          id="last_name_edit"
+          autocomplete="family-name"
+          value="<%= typeof last_name_edit != 'undefined' ? last_name_edit : '' %>"
+        />
+      </div>
+      <div class="input-auth">
+        <label for="username_edit" class="label-auth"> Username:</label>
+        <input
+          required
+          class="auth"
+          type="text"
+          name="username_edit"
+          id="username_edit"
+          autocomplete="username_edit"
+          value="<%= typeof username_edit != 'undefined' ? username_edit : '' %>"
+        />
+      </div>
+      <div class="input-auth">
+        <label for="email_edit" class="label-auth">Email :</label>
+        <input
+          required
+          class="auth"
+          type="email"
+          name="email_edit"
+          id="email_edit"
+          autocomplete="email"
+          value="<%= typeof email_edit != 'undefined' ? email_edit : '' %>"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="mx-auto bg-white text-green-600 border-2 border-green-700 rounded-xl px-11 py-3 text-3xl"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</main>

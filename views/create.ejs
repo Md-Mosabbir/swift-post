@@ -71,7 +71,7 @@
         <div class="create-input items-center">
           <label for="storySelect" class="text-xl font-poppins">Story:</label>
     
-          <select name="storySelect" id="story-select" class="w-[78%] py-2 rounded-2xl border-2 px-3">
+          <select name="storySelect" required id="story-select" class="w-[78%] py-2 rounded-2xl border-2 px-3">
             <% user.storylines.forEach((story) => { %>
               <option value="<%= story.title %>"> <%= story.title %> </option>
 

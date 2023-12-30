@@ -19,7 +19,6 @@ exports.submit_register = (req, res) => {
     !passwordconfirm
   ) {
     errors.push({ msg: "Please enter all fields" })
-    console.log(errors)
   }
   if (password != passwordconfirm) {
     errors.push({ msg: "Passwords do not match" })
