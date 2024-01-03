@@ -120,6 +120,17 @@ exports.delete_profile = asyncHandler(async (req, res) => {
   }
 })
 
+exports.add_pic = asyncHandler(async function (req, res, next) {
+  const id = req.user.id
+  const user = await User.findById(id)
+
+  user.profileImage = req.file.filename
+
+  await user.save()
+
+  res.redirect("/profile")
+})
+
 exports.logout = (req, res) => {
   // Using the callback function provided by req#logout
   req.logout((err) => {

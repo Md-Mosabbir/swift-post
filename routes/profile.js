@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const profile_controller = require("../controllers/profileController")
 const { ensureAuthenticated } = require("../config/authConfig")
+const upload = require("../config/multer")
 
 router.get("/logout", profile_controller.logout)
 
@@ -23,6 +24,13 @@ router.get(
   "/:username",
   ensureAuthenticated,
   profile_controller.get_storylines_and_timelogs,
+)
+
+router.post(
+  "/profilepic",
+  ensureAuthenticated,
+  upload.single("image"),
+  profile_controller.add_pic,
 )
 
 module.exports = router

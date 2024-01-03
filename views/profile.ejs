@@ -5,12 +5,26 @@
   <div class="w-full">
     <div class="flex flex-col">
        
-      <div class="flex justify-start items-center gap-14 w-full">
-        <img
-          src="https://i.pinimg.com/236x/5e/75/4d/5e754dcdb067c149bc7567627dbb5abe.jpg"
+      <div class="flex justify-start items-center gap-14 ">
+        <form
+        id="uploadform"
+        hidden
+        action="/profile/profilepic"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="image" />
+      </form>
+        <div class="relative ">
+          <span id="uploadicon" class="w-10 h-10 absolute bottom-0 right-0 rounded-full flex justify-center items-center bg-blue-400 ">
+            <i class="fa-regular fa-pen-to-square" style="color: #fff;"></i>
+          </span>
+          <img
+          src="/images/<%=user.profileImage %>"
           alt="Profile Image"
-          class="rounded-full object-center"
+          class="rounded-3xl object-center border w-60 h-60"
         />
+        </div>
         <div class="my-10 flex flex-col items-start w-full">
           <h1 class="text-3xl font-bold"><%= user.first_name %>  <%= user.last_name %></h1>
           <p class="text-gray-600"><%= user.username %></p>
@@ -97,4 +111,19 @@
   <% include ./partials/createButton %>
 </main>
 
+
+<script>
+  const profileAddBtn = document.querySelector("#uploadicon")
+  const picForm = document.querySelector("#uploadform input")
+  const form = document.querySelector("#uploadform")  
+
+  profileAddBtn.addEventListener("click", () => {
+    picForm.click()
+      
+  })
+
+  picForm.addEventListener("change", () => {
+      form.submit()
+    })
+</script>
 

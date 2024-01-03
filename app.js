@@ -6,10 +6,11 @@ var expressLayouts = require("express-ejs-layouts")
 var path = require("path")
 var cookieParser = require("cookie-parser")
 var logger = require("morgan")
-
+const compression = require("compression")
 const passport = require("passport")
 const flash = require("connect-flash")
 const session = require("express-session")
+const MongoDBStore = require("connect-mongodb-session")(session)
 
 var index = require("./routes/index")
 var profile = require("./routes/profile")
@@ -24,17 +25,19 @@ var app = express()
 
 const methodOverride = require("method-override")
 
-//Passport COnfig
+// Passport Config
 require("./config/passport")(passport)
 
 const MONGODB_URI = process.env.MONGODB_URI
 mongoose.set("strictQuery", false)
-//Database setup
 
+// Database setup
 main().catch((err) => console.log(err))
 async function main() {
   await mongoose.connect(MONGODB_URI)
 }
+
+app.use(compression())
 
 // view engine setup
 app.use(expressLayouts)
@@ -48,12 +51,19 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 app.use(methodOverride("_method"))
 
-// Express session
+// Create a new instance of MongoDBStore
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions",
+})
+
+// Express session with MongoDBStore
 app.use(
   session({
     secret: "secret",
     resave: true,
     saveUninitialized: true,
+    store: store,
   }),
 )
 
@@ -72,7 +82,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-//Routes
+// Routes
 app.use("/", index)
 app.use("/register", register)
 app.use("/login", login)
