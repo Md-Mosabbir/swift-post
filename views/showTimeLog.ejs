@@ -1,8 +1,12 @@
 <% include ./partials/navigationBar %>
-<main class="flex justify-center items-center w-full h-screen">
-  <div class="flex flex-col gap-10 border-2 w-3/5 h-1/2 p-7 rounded-3xl">
+<main class="flex justify-center items-center w-full p-4">
+  <div
+    class="flex flex-col gap-10 border-2 w-3/5 h-1/2 p-7 rounded-3xl max-md:w-full"
+  >
     <div class="flex gap-5 items-center">
-      <h1 class="font-extrabold text-4xl font-poppins">Edit Time-log</h1>
+      <h1 class="font-extrabold text-4xl font-poppins max-md:text-2xl">
+        Edit Time-log
+      </h1>
       <form
         action="/storyline/time-log/<%= id %>/delete?_method=DELETE"
         method="post"

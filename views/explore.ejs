@@ -1,15 +1,15 @@
 <% include ./partials/navigationBar %>
 <main class="h-screen w-full p-8 relative">
-  <section class="flex flex-col gap-4 items-center">
+  <section class="flex flex-col gap-4 items-center py-4">
     <% timelogs.forEach(function (tl) { %>
 
-      <article class="flex flex-col justify-between gap-5 border-4 px-4 py-10 rounded-3xl w-1/2 ">
+      <article class="flex flex-col justify-between gap-5 border-4 px-4 py-10 rounded-3xl w-3/4 max-sm:w-full ">
         <div>
-          <div class="flex gap-3 items-center">
+          <div class="flex gap-3 items-center max-sm:flex-col max-sm:items-start max-sm:gap-1  ">
             <a href="/users/<%= tl.user._id %>">
-              <p class="text-2xl font-extrabold underline"><%= tl.user.username %></p> 
+              <p class="text-2xl font-extrabold underline max-sm:text-lg"><%= tl.user.username %></p> 
             </a>
-            <a href="/users/<%= tl.user._id %>/<%= tl.storylines._id %>"><span class="text-lg text-zinc-700">. <%= tl.storylines.title %></span></a> 
+            <a href="/users/<%= tl.user._id %>/<%= tl.storylines._id %>"><span class="text-lg text-zinc-700 max-sm:text-base">. <%= tl.storylines.title %></span></a> 
           </div>
           <span class="text-zinc-500 text-sm"><%= tl.createdDate.toLocaleDateString() %></span>
         </div>
